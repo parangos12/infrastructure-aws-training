@@ -43,7 +43,7 @@ resource "aws_iam_role" "demo_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role_doc.json
 }
 
-//3. Attach IAM Policy 'AmazonS3FullAccess' to above role.
+//3. Attach IAM Policy 'AmazonS3FullAccess' to above role. Adjust the policy_arn attribute to attach the policies you need.
 resource "aws_iam_role_policy_attachment" "s3_full_access_att" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
   role       = aws_iam_role.demo_role.name

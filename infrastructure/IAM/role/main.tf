@@ -36,7 +36,8 @@ data "aws_iam_policy_document" "assume_role_doc" {
   }
 }
 
-//2. Create the role with the TRUST RELATIONSHIP
+//2. Create the role with the TRUST RELATIONSHIP allowing the EC2 service to assume the role.
+//The 'assume_role_policy' attribute contains a JSON Policy document.
 resource "aws_iam_role" "demo_role" {
   name               = "demo_role"
   assume_role_policy = data.aws_iam_policy_document.assume_role_doc.json
@@ -56,7 +57,7 @@ resource "aws_iam_instance_profile" "ec2_profile" {
 
 //5. Create an EC2 Instance
 resource "aws_instance" "demo_instance" {
-  ami           = "ami-02a2af70a66af6dfb"
+  ami           = "ami-0f88e80871fd81e91"
   instance_type = "t2.micro"
 
   iam_instance_profile = aws_iam_instance_profile.ec2_profile.name

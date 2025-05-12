@@ -23,6 +23,8 @@ provider "aws" {
 }
 
 //1. Create a TRUST RELATIONSHIP policy document.
+// The assume_role_policy defines WHO can assume the role(user, account, service), not what resources
+// the role can access
 data "aws_iam_policy_document" "assume_role_doc" {
   statement {
     effect = "Allow"
@@ -31,7 +33,7 @@ data "aws_iam_policy_document" "assume_role_doc" {
     ]
     principals {
       identifiers = ["ec2.amazonaws.com"]
-      type        = "Service"
+      type = "Service"
     }
   }
 }
